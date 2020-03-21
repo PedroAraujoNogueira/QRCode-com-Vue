@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <p>{{ titulo }}</p>
+            <!-- Para acessarmos um método devemos colocar os parenteses, se nao colocarmos os 
+                parenteses ocorrerá um erro. -->
+            <p>{{ saudacao() }}</p>
+        </div>
+        <script>
+            // O Vue cria acessos diretos ao nosso Html, ou seja, NÃO precisamos passar a 
+            // instancia do Vue para uma variavel para depois fazer "variavel.methods.saudacao", pois
+            // temos acesso direto a tudo que esta dentro de data e tudo que esta dentro de methods.
+            new Vue({
+                el: "#app",
+                data: {
+                    titulo: "Aprendendo Vue 2"
+                },
+                methods: {
+                    saudacao(){
+                        return 'Boa semana!'
+                    },
+                    // Todo atributo ou retorno de funcao que sera interpolado pelo html deve ser 
+                    // passível de ser transformado em string.
+                }
+            })
+        </script>
+    </body>
+</html>

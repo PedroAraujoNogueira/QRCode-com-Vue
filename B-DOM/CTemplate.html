@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <!-- A instancia do Vue tem o template todo em memória e sempre ha alguma mudança ele gera 
+                novamente o template atualizando somente aquilo que precisa ser atualizado. -->
+            <!-- O v-once vai fazer com que essa tag leia o valor da instancia Vue apenas uma vez
+                e quando o atributo que esta dentro da tag for atualizado pela Vue nao sera atualizado 
+                na tag. -->
+            <p v-once>{{ titulo }}</p>
+            <!-- O v-once tambem é uma opcao que consome menos recurso de processamento, pois a instancia
+                 do Vue nao irá se preocupar em atualizar esse trecho de html.-->
+            <p>{{ saudacao() }}</p>
+            <p><a v-bind:href="link">google</a></p>
+        </div>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    titulo: "Aprendendo Vue 2",
+                    link: "http://www.google.com"
+                },
+                methods: {
+                    saudacao(){
+                        // Sempre que há uma mudança no valor de uma variavel da Vue entao a Vue é 
+                        // atualizada, ou seja todo o codigo html que é comandado pela instancia Vue é 
+                        // atualizado.
+                        this.titulo = "Bom dia!"
+                        return this.titulo
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>

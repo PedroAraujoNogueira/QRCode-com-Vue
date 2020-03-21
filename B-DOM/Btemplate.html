@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <p>{{ titulo }}</p>         
+            <p>{{ saudacao() }}</p>
+            <!-- <p><a href="{{ link }}">Canal?</a></p> Dessa forma nao daria certo, nesse caso
+                é necessario o uso do v-bind.--> 
+            <!-- v-bind: é uma diretiva, essa diretiva diz que o que estiver dentro da propriedade da 
+                tag deve ser interpolado pelo Vue. -->
+            <!-- Diretivas sao propriedades personalizadas usadas nas propriedades das tags. -->
+            <!-- Uma forma de usar o v-bind é v-bind:NomeDaPropriedade = "atributo da Vue" -->
+            <p><a v-bind:href="link">Canal</a></p>  
+            <!-- Essa é uma forma simplificada de usar o v-bind: -->
+            <p><a :href="link">google</a></p>
+            <p>
+        </div>
+        <script>           
+            new Vue({
+                el: "#app",
+                data: {
+                    titulo: "Aprendendo Vue 2",
+                    link: "http://www.google.com"
+                },
+                methods: {
+                    saudacao(){
+                        // Quando imprimos console.log(this) podemos ver que é impresso a propria
+                        // instancia Vue e que ela possui o metodo saudacao e o atributo titulo.
+                        // OBS: não podemos ter um metodo com o mesmo nome de um atributo, ou seja
+                        // não podemos criar um metodo chamado 'titulo' por exemplo.
+                        console.log(this)
+                        return this.titulo
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>

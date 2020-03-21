@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <!-- Diretiva é uma propriedade personalizada do HTML. -->
+            <!-- Por padrao um evento(event) é passado sempre que nós associamos um metodo, criado 
+                dentro da instancia do Vue, para ser usado chamado dentro de um componente HTML. -->
+            <input type="text" v-on:input = "alterarTitulo">
+            <!-- Padrao doble mustache, que sao duas chaves abrindo e fechando, é usado para dizer
+                que o que estiver dentro das chaves deve ser renderizado(interpolado) pelo Vue.  -->
+            <p>{{ titulo }}</p>
+            
+        </div>
+        <script>
+            // instancia do Vue, ela recebe como parametro um objeto.
+            new Vue({
+                // O "el" vai nos dizer qual o trecho HTML que queremos controlar a partir da
+                // instancia do Vue.
+                el: "#app",
+                // O "data" é um objeto onde vamos definir varios dados que eventualmente 
+                // queremos usar no nosso HTML.
+                data: {
+                    titulo: "Aprendendo Vue 2"
+                },
+                methods: {
+                    alterarTitulo(event){
+                        // O "event.target.value" pega o valor do elemento(Tag) que gerou o evento.
+                        this.titulo = event.target.value
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

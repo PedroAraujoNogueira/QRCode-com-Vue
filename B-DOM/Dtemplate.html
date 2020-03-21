@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <p v-once>{{ titulo }}</p>
+            <p>{{ saudacao() }}</p>
+            <p><a v-bind:href="link">google</a></p>
+            <!-- <p>{{ linkHtml }}</p> se colocarmos somente dessa forma oq sera impresso sera o 
+                texto <a href="http://www.google.com"></a> e nao o html gerado por isso. Esse 
+                comportamento é importante pois previne contra ataques XSS(Cross-site scripting).-->
+            <!-- Através de um XSS, o hacker injeta códigos JavaScript em um campo texto de 
+                uma página já existente e este JavaScript é apresentado para outros usuários, porque
+                persiste na página. -->
+            <!-- A diretiva v-html interpreta o conteudo passado para ele como um conteudo html. -->
+            <p v-html="linkHtml"></p>
+        </div>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    titulo: "Aprendendo Vue 2",
+                    link: "http://www.google.com",
+                    linkHtml: '<a href="http://www.google.com"></a>'
+                },
+                methods: {
+                    saudacao(){
+                        this.titulo = "Bom dia!"
+                        return this.titulo
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>
