@@ -1,0 +1,9 @@
+body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    /* color: #FFF; */
+    background: linear-gradient(to right, rgb(19, 106, 138), rgb(67, 205, 128));
+  
+}

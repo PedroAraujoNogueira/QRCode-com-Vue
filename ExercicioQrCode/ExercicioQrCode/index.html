@@ -1,0 +1,49 @@
+<!-- Projeto para digitar um texto em um input e ele já gerar um QrCode associado ao texto digitado. -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.js"></script>
+        <link rel="stylesheet" href="./style1.css">
+        <title>Gerador de QRCode</title>
+    </head>
+    <body>
+        <div id="app">        
+            <h1>{{ nome }}</h1>
+            <div>
+                <input type="text" size="25" 
+                    placeholder="Digite para gerar novo QRCode"
+                    :value="text" @input="onData">
+            </div>
+            <br>
+            <br>
+            <div v-if="text">
+                <img :src="newQRCode" alt="QRCode">
+            </div>
+        </div>
+        
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    nome: 'Gerador de QRCodes',
+                    text: 'Tribunal de justiça.',
+                    qrcode: new QRious({ size: 300 })
+                },
+                computed: {
+                    newQRCode(){
+                        this.qrcode.value = this.text
+                        return this.qrcode.toDataURL()
+                    }
+                },
+                methods: {
+                    onData(event){
+                        this.text = event.target.value
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

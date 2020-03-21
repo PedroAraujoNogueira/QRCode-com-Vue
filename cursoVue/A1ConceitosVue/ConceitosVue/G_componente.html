@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Componente Vue</title>
+</head>
+<body>
+    <div id = "app">
+        <saudacao nome="Ana"></saudacao>
+        <saudacao nome="Raquel"></saudacao>
+        <saudacao nome="Pedro"></saudacao>
+    </div>
+    <script>
+        // A função componente recebe dois parâmetros, o primeiro parametro é o nome do componente e o segundo parametro é um objeto que vai ter propriedades e pode usar boa parte 
+        // daquilo que foi visto para uma instancia Vue, como data, methods, template  e etc
+        Vue.component('saudacao', {
+            props: ['nome'],          
+            template: ` 
+                <div>
+                    Bom dia {{ nome }}!
+                </div>
+            `
+        })
+
+        new Vue({
+            el: "#app"
+        })
+
+    </script>
+</body>
+</html>

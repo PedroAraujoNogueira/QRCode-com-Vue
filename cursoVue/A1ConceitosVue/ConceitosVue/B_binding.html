@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Binding</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ link }}</p>
+        <p><a href="{{ link }}">Canal?</a></p>
+        <!-- v-bind: é uma diretiva, essa diretiva diz que o que estiver dentro da tag deve ser interpolado pelo Vue. -->
+        <!-- Diretivas sao propriedades personalizadas. -->
+        <p><a v-bind:href="link">Canal</a></p>  
+        <!-- Essa é uma forma simplificada de usar o v-bind: -->
+        <p><a :href="link">Canal</a></p>
+        <p>
+            <!-- Outra diretiva do Vue é o v-model. O v-model faz um binding bidirecional, ou atualização em duas direções. -->
+            <input id="y" class="x" type="text" v-model="nome" ><br>
+            <span> {{ nome }} </span>
+        </p>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                nome: "Pedro",
+                link: "https://youtube.com/cod3rcursos"
+            }, watch: {
+                nome(novoValor){
+                    if(novoValor.length > 8){
+                        console.log("Senha não permitida, número de caracteres máximo ultrapassado.")
+                        console.log(novoValor.toUpperCase())
+                        // document.querySelector("[id='y']").value = "abcde"
+                        this.nome = "abc" // novoValor.substr(0,8) 
+                    }
+                    if(novoValor.length < 2){
+                        this.nome = "abcdefg"
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

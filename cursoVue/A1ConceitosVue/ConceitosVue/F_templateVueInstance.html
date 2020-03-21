@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <title>Template</title>
+    </head>
+    <body>
+        <div id = "app">
+
+        </div>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    titulo: "VueJS",
+                    subtitulo: "Framework Progressivo"
+                },
+                // Todo html que será inserido dentro da div vai vim a partir do template que estará dentro da instância Vue.
+                // Note que estamos delimitando o template com crases, pois dessa forma podemos colocar multiplas linhas dentro de template, o que não seria possível se 
+                // usassemos aspas simples ou aspas duplas.
+                // OBS: Se tirarmos a div que está envolvendo as duas outras tags então só irá aparecer a primeira tag e as tags que vinherem abaixo dela serão ignoradas. Para que
+                // sera renderizado todo o conteudo é necessário que eles estejam envoltos por alguma tag.
+                template: ` 
+                    <div>
+                        <h1>{{ titulo }}</h1>
+                        <h3>{{ subtitulo }}</h3>
+                    </div>
+                `
+            })
+        </script>
+    </body>
+</html>
+<!-- Aqui colocaremos o trecho de html que queremos que seja renderizado dentro da div(ou outra tag) na qual o Vue está controlando, posso colocar o template na propria instancia Vue ao inves
+     de estar separado. Porém o mais comum é separar e deixar no próprio html mesmo, mas tambem podemos colocar dentro da propriedade template o html que queremos usar para ser
+     renderizado dentro da nossa aplicação. -->

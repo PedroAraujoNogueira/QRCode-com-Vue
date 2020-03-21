@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Eventos</title>
+</head>
+<body >
+    <div id="app">
+        <p> {{ contador }}</p>
+        <p> 
+            <!-- A diretiva v-on é responsável por chamar uma função no momento em que acontecer determinado evento. -->
+            <button v-on:click="add">Adicionar</button>
+            <!-- @ é uma forma simplificada de escrever v-on:, porém o efeito de ambas é o mesmo. -->
+            <!-- Observe que podemos ao inves de chamar uma funçao, podemos simplemente colocar uma expressao simples. -->
+            <button @click="contador -= 2">Diminuir 2</button>
+        </p>
+        <!-- Captura o movimento do mouse. -->
+        <p @mousemove="atualizarPosicao">
+            coordenadas: {{ x }} e {{ y }}
+            <!-- .stop ´um modificador de evento, pois ele faz o evento de mousemove parar. -->
+            <br><span @mousemove.stop>Aqui não irá pegar o movimento do mouse</span>
+            <!-- Outra forma de fazer seria a da linha abaixo. -->
+            <br><span @mousemove="parar">Aqui tambem não irá pegar o movimento do mouse</span>
+            <br><span>Aqui irá pegar o movimento do mouse novamente</span>
+        </p>
+        <!-- Dispara um evento de teclado para um tecla específica(enter). -->
+        <input type="text" @keyup.enter = "alerta">
+        <!-- Dispara um evento de teclado para um tecla específica(m). -->
+        <input type="text" @keyup.m = "alerta2">
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                x: 0,
+                y: 0,
+                contador: 0
+            },
+            methods: {
+                add() {
+                    this.contador++
+                },
+                atualizarPosicao(e){
+                    this.x = e.clientX
+                    this.y = e.clientY
+                },
+                parar(e){
+                    e.stopPropagation()
+                },
+                alerta(){
+                    alert("Funcionou após apertar enter.")
+                },
+                alerta2(){
+                    alert("Funcionou após apertar m ou M.")
+                }
+            }
+        })
+    </script>
+</body>
+</html>

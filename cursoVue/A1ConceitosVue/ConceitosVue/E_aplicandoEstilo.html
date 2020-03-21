@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Aplicando Estilo</title>
+    <style>
+        .vermelho {
+            background-color: red;
+        }
+    </style>
+</head>
+<body> 
+    <div id="app" @click="mudaStatusCor()"            
+        :class="{vermelho: aplicarCor}">
+        Teste
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                aplicarCor: false
+            },
+            methods:{
+                mudaStatusCor(){               
+                    this.aplicarCor = !this.aplicarCor
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+
+<!-- OBS: Poderíamos usar varias classes separadas por virgulas. -->
+<!-- OBS2: Teriamos que usar aspas simples caso a classe tiver ifens ou algum outro caracter não válido. -->
+<!-- OBS3: Poderíamos não ter criado o método mudaStatusCor() e feito diretamente no @click usando a expressão "aplicarCor = !aplicarCor" -->
+<!-- OBS4: Para termos uma aplicação condicional de uma estilo CSS, colocamos primeiro o nome da classe, : e depois o valor booleano que irá dizer se aquela classe
+     irá ser aplicada ou não.  -->
