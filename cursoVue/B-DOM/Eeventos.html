@@ -9,15 +9,34 @@
     </head>
     <body>
         <div id = "app">
-            <p>{{ titulo }}</p>
+            <p v-once>{{ contador }}</p>
+            <p>{{ contador }}</p>
+            <!-- v-on é uma diretiva que voce espera um evento acontecer como um click ou 
+                o movimento do mouse, e quando esse evento acontecer é feita uma ação. -->
+            <!-- Sempre que um evento(click, mousemove e etc) é interceptado pelo Vue, por
+                 padrao a variavel event é passada -->
+            <button v-on:click="somar" >Somar 1</button>
+            <p v-on:mousemove="atualizaCoordenadas">Mouse: {{ x }} e {{ y }}</p>
         </div>
         <script>
 
             new Vue({
                 el: "#app",
                 data: {
-                    titulo: "Aprendendo Vue 2"
+                    contador: 0,
+                    x: 0,
+                    y: 0
                 },  
+                methods: {
+                    somar() {
+                        this.contador++
+                    },
+                    atualizaCoordenadas(event){
+                        console.log(event)
+                        this.x = event.clientX
+                        this.y = event.clientY
+                    }
+                }
             })
         </script>
     </body>

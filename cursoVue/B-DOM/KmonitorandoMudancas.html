@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <button v-on:click="somar" >Contador 1</button>
+            <button v-on:click="contador2++" >Contador 2</button>
+            <button v-on:click="diminuir" >Diminuir 1</button>
+            <p>Contador: {{ contador }} | {{ contador2 }}</p>
+            <p>Resultado: {{ comparativo }}</p>
+        </div>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    contador: 0,
+                    contador2: 0,
+                    resultado: ''
+                },
+                
+                computed:{
+                    comparativo(){
+                        console.log("Método comparativo chamado.")
+                        this.resultado = this.contador > 5 ? "Maior que 5" : "Menor que 5"
+                        return this.resultado
+                    }
+                },
+                // watch é usada para quando queremos monitorar as mudanças de uma 
+                // determinada variavel e fazer algo em resposta dessa mudança. Uma grande
+                // diferença do watch para uma propriedade/metodo computada é que na 
+                // propriedade/metodo calculado temos que retornar algo sincrono já no
+                // watch podemos retornar algo assincrono.
+                // No watch o nome do metodo tem que ser igual ao nome da variavel que voce
+                // quer monitorar.
+                // O metodo watch recebe dois parametros, o primeiro é o novo valor da 
+                // variavel monitorada e o segundo é o valor antigo. 
+                watch:{
+                    contador(novo, antigo){
+                        console.log(novo, antigo)
+                        setTimeout(() => {
+                            this.contador = 0
+                        }, 2000)
+                    }
+                },
+                methods: {
+                    somar() {
+                        this.contador++
+                    },
+                    diminuir() {
+                        this.contador--
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>

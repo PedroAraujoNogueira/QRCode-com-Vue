@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <!-- As propriedades reativas sao criadas no momento em que passamos o objeto 
+                de configuração para a instancia Vue. Se criarmos um atributo externamente
+                há instancia Vue ele nao tera todos os proxys relacionados nem os getters
+                and setters reativos que fazem com que a "magica" do Vue aconteça nem usa
+                o padrao observer para verificar se houve mudança no valor, por exemplo. 
+                Logo o atributo novaInformaçao so sera renderizado apos um click no botao,
+                que fará a pagina renderizar novamente e entao ele aparecerá, porem sem as
+                propriedades que um atributo "nascido" na instancia Vue tem. O mesmo 
+                acontece com a variavel numero1. -->
+            {{ titulo }} {{ novaInformacao }} 
+            <button @click="alterar">Alterar</button>
+            {{ somar() }}
+        </div>
+        <script>
+            const vm = new Vue({ 
+                el: "#app",
+                data: {
+                    titulo: "teste1",
+                    numero2: 2
+                },
+                methods:{
+                    alterar(){
+                        this.titulo += "!"
+                        console.log(vm.$data.novaInformacao)
+                    },
+                    somar(){
+                        return this.numero1 + this.numero2
+                    }
+                }
+            })
+            // Podemos perceber que a propriedade abaixo é mostrada no console, porem ela
+            // nao é reativa, ou seja, ela nao tem as caracteristicas de poder ser 
+            // usada da mesma forma que um atributo iniciado dentro da instancia Vue.
+            vm.novaInformacao = "Teste"
+            console.log(vm.novaInformacao)
+            vm.numero1 = 1
+            console.log(vm.$data.novaInformacao) // Não funciona. O resultado é undefined.
+            console.log(vm.$data.titulo) // Funciona. Mostra o valor do atributo título.
+            console.log(vm.titulo) // Funciona também.
+
+        </script>
+    </body>
+</html>

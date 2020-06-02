@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app1">
+            <!-- Ao rodarmos esse codigo observe que no console aparece duas mensagens
+                de erro, uma dizendo que titulo2 nao esta definido e outra dizendo que 
+                titulo1 nao esta definido. Isso acontece pq o atributo titulo1 nao é 
+                enchergado pela instancia app2 e titulo 2 nao é enchergado pela 
+                instancia app1 -->
+            {{ titulo1 }} {{ titulo2 }}
+            <!-- Observe que cada vez que clicarmos no botao a mensagem de erro de que 
+                titulo2 nao esta definido aparece novamente pois o trecho html controlado
+                por essa instancia Vue é renderizado novamente. -->
+            <button @click="alterar">Alterar</button>
+        </div>
+        <div id = "app2">
+            {{ titulo1 }} {{ titulo2 }}
+            <button @click="alterar">Alterar</button>
+        </div>
+        <script>
+            // OBS: O fato de podermos usar multiplas instancias Vue nao quer dizer que essa 
+            // açao deve ser feita, geralmente nao é a melhor maneira e deve ser usada em
+            // casos bem específicos, porem sendo necessario nao ha problema nenhum em
+            // controlar duas instancias Vue, é perfeitamente possível. Um exemplo é caso 
+            // estejamos construindo aplicação usando outra tecnologia 
+            // e quisermos controlar uma parte dessa pagina usando Vue, entao podemos fazer 
+            // instancias Vue separadas em determinados trechos dessa aplicaçao. Porem se a
+            // aplicação for completamente em Vue nao faz sentido criarmos multiplas 
+            // instancias Vue, ao inves disso criaremos componentes.
+            new Vue({
+                 
+                el: "#app1",
+                data: {
+                    titulo1: "teste1"
+                },
+                methods:{
+                    alterar(){
+                        this.titulo1 += "!!"
+                    }
+                }
+            })
+            
+            new Vue({
+                el: "#app2",
+                data: {
+                    titulo2: 'teste2'
+                },
+                methods:{
+                    alterar(){
+                        this.titulo2 += "!!"
+                    }
+                }
+            })
+
+        </script>
+    </body>
+</html>

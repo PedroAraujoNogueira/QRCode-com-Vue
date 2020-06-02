@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <p v-on:mousemove="atualizaCoordenadas">Mouse: {{ x }} e {{ y }}
+                <!-- O metodo parar ira parar a propagacao do evento dentro dessa tag. -->
+                <span v-on:mousemove="parar">Parar aqui!</span>
+                <!-- O modificador de evento .stop fará exatamente a mesma coisa do método
+                    "parar" criado por nos. Porem o codigo fica mais simples. -->
+                <span v-on:mousemove.stop="">Parar aqui!</span>
+            </p>
+            <!-- Outro modificador de evento é o .prevent que ele previne o comportamento
+                padrao. -->
+            <a v-on:click.prevent="" href="http://www.google.com.br">Google</a>
+            <!-- Outra forma é usando o .preventDefault que tambe previne o compostamento e
+                pode ser usado chamando um metodo. Tem a mesma funcionadade do .prevent. -->
+            <a v-on:click="naoNavegar" href="http://www.google.com.br">Google</a>
+            <!-- Podemos ainda encadear dois modificadores de acesso. -->
+            <span v-on:mousemove.stop.prevent="">Parar aqui!</span>
+            <!-- Com o evento keyup toda vez que apertarmos uma tecla no input ele ira
+                chamar a funcao passada. -->
+            <input type="text" v-on:keyup="exibirAlerta">
+            <!-- Com o modificador de evento .enter toda vez que apertarmos a tecla enter 
+                no input ele ira chamar a funcao passada. -->
+            <input type="text" v-on:keyup.enter="exibirAlerta">
+            <!-- Tambem podemos encadear os modificadores de evento, .enter e .left por 
+                exemplo, toda vez que apertarmos a tecla enter ou a tecla left no input 
+                ele ira chamar a funcao passada. -->
+            <input type="text" v-on:keyup.enter.left="exibirAlerta">
+            <!-- Você pode utilizar os modificadores a seguir para acionar eventos 
+                de mouse ou teclado apenas quando o modificador correspondente estiver 
+                acionado: .ctrl .alt .shift .meta, ou seja tanto o alt como o enter devem
+                estar precionados para que a funcao que foi passada seja chamada. -->
+            <input type="text" v-on:keyup.enter.alt="exibirAlerta">
+        </div>
+        <script>
+
+            new Vue({
+                el: "#app",
+                data: {
+                    contador: 0,
+                    x: 0,
+                    y: 0
+                },  
+                methods: {
+                    somar(numero) {
+                        this.contador += 5
+                    },
+                    atualizaCoordenadas(event){
+                        console.log(event)
+                        this.x = event.clientX
+                        this.y = event.clientY
+                    },
+                    parar(event){
+                        // Para a propagação de um evento.
+                        event.stopPropagation()
+                    }, 
+                    exibirAlerta(){
+                        alert("você digitou: " + event.target.value)
+                    },
+                    naoNavegar(event){
+                        event.preventDefault()
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

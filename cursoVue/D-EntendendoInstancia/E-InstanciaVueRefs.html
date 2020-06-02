@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+
+        <div id="app">
+            <!-- Usamos o ref para pegar de forma simples a referencia de um determinado 
+                elemento na DOM. -->
+            <h1 ref="aulaRef">{{ aula }}</h1>
+            <h2>{{ modulo }}</h2>
+            <button @click="alterarAula">Alterar Aula</button>
+            <button @click="alterarModulo">Alterar módulo</button>
+        </div>
+
+        <script>
+            const vm = new Vue({
+                el: '#app',
+                data: {
+                    aula: 'Aula Usando Refs.',
+                    modulo: 'Módulo: instância Vue.'
+                },
+                methods: {
+                    alterarAula(){
+                        this.aula += "#"
+                    },
+                    alterarModulo(){
+                        this.modulo += "#" 
+                    }
+                }
+            })
+            // Para mais detalhes ver aula 76 do curso, porem essa aula está um pouco
+            // desatualizada.
+            vm.$refs.aulaRef.innerText = 'Alterado diretamente :('
+        </script>
+    </body>
+</html>

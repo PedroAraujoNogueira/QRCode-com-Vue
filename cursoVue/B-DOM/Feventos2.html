@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <p>{{ contador }}</p>
+            <!-- No momento em que passamos o nosso proprio parametro entao automaticamente 
+                o evento nao é passado por padrao. Porem se ainda quisermos que seja passado
+                o evento entao temos que colocar a palavra reservada $event. -->
+            <button v-on:click="somar(5, $event)" >Somar 1</button>
+        </div>
+        <script>
+
+            new Vue({
+                el: "#app",
+                data: {
+                    contador: 0,
+                    x: 0,
+                    y: 0
+                },  
+                methods: {
+                    somar(numero, event) {
+                        console.log(event)
+                        this.contador += 5
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>

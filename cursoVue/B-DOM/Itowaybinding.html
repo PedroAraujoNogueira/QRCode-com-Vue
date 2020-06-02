@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <p>{{ titulo }}</p>
+            <!-- OBS: Quando alteramos um dado na Vue instance ele automaticamente altera
+                o html gerado, porem com v-bind os dados que estamos alterando no html nao
+                sao alterados na Vue instance. -->
+            <input type="text" v-bind:value="titulo">
+            <!-- Para alterarmos tanto da Vue instance para o html como do html para a 
+                Vue instance(to way data binding) poderiamos fazer da seguinte forma. -->
+            <input type="text" v-bind:value="titulo" 
+                v-on:input="titulo = $event.target.value">
+            <!-- Uma forma mais simples de fazer o exemplo acima seria usando o v-model.
+                O v-model faz um binding bidirecional(to way data binding), ou atualização
+                em duas direções. Ou seja, alteramos tanto da Vue instance para o html 
+                como do html para a Vue instance. -->
+            <input type="text" v-model="titulo">
+        </div>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    titulo: "Aprendendo Vue 2"
+                }             
+            })
+        </script>
+    </body>
+</html>

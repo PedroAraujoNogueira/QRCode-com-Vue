@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Primeiro App</title>
+    </head>
+    <body>
+        <div id = "app">
+            <!-- Observe que podemos colocar uma expressao e embora o contador seja
+                incrementado de 1 em 1 sera mostrado de 2 em 2 pois está sendo
+                multiplicado na interpolaçao. -->
+            <p>{{ contador*2 }}</p>
+            <!-- Podemos fazer inclusive operaçoes ternarias, porem é aconselhavel que
+                expressoes maiores sejam colocadas dentro de funcoes e entao seja
+                chamada a função. -->
+            <!-- Operacoes com if, else for e etc nao sao aceitas. -->
+            <p>{{ contador*2 > 10 ? "Maior que 10" : "Menor ou igual a 10" }}</p>
+            <button v-on:click="somar" >Somar 1</button>
+        </div>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    contador: 0,
+                },
+                methods: {
+                    somar() {
+                        this.contador++
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>
